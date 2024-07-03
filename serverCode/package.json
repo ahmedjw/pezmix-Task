@@ -17,7 +17,8 @@
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "nodemailer": "^6.9.14"
+    "nodemailer": "^6.9.14",
+    "puppeteer": "^22.12.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
