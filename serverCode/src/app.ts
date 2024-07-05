@@ -24,7 +24,9 @@ app.use((err: Error, req: Request, res: Response) => {
 });
 
 // running server
-connectToDb()
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
+connectToDb().then(()=>{
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+  });
+})
+

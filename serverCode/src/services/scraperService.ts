@@ -2,12 +2,13 @@ import cheerio from "cheerio";
 import { autoScroll, delay } from "../helpers/scraperHelpers";
 import { websitesScraperConfigrations } from "../helpers/scraperHelpers";
 import puppeteer from "puppeteer";
+import { storeEmails } from "../helpers/dbActions";
 
 const scraperService = {
-  async scrollAndScrape(url: string) {
+  async scrapeAndStore(url: string) {
     const emailsSet = new Set();
     const browser = await puppeteer.launch({
-      // headless: false, // used to visualize the process in chrome
+      headless: false, // used to visualize the process in chrome
     });
     const page = await browser.newPage();
     try {
@@ -32,8 +33,8 @@ const scraperService = {
       emails?.forEach((item:string) => {
         emailsSet.add(item);
       });
-
-      return { emailsSet };
+      const emailsScraped = storeEmails(emailsSet);
+      return { emailsScraped };
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -46,6 +47,7 @@ export default scraperService;
 
 
 // scraperService.scrollAndScrape("https://stanfordwho.stanford.edu/people?sort=20&keyword=eng");
-// scraperService.scrollAndScrape(
+// scraperService.scrapeAndStore(
 //   "https://mcommunity.umich.edu/?value=eng&base=all"
 // );
+storeEmails({})

@@ -1,3 +1,6 @@
+
+// function to handle scraping process with diffrent configrations depend on the website we need to scrap
+
 export async function websitesScraperConfigrations(website: string, page: any) {
   switch (website) {
     //scraper configration for mcommunity website
@@ -19,6 +22,7 @@ export async function websitesScraperConfigrations(website: string, page: any) {
   }
 }
 
+// a funtion to auto scroll while scraping a lazyLoading page 
 export async function autoScroll(page: any) {
   const getDocumentHeight = async () => {
     return await page.evaluate(() => document.body.scrollHeight);
@@ -44,6 +48,7 @@ export async function autoScroll(page: any) {
   }
 }
 
+// delay function for scraping 
 export async function delay(time: any) {
   return new Promise(function (resolve) {
     setTimeout(resolve, time);

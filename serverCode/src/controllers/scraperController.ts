@@ -5,7 +5,7 @@ const scraperController = {
   async scrapeData(req: Request, res: Response) {
     try {
       // Call scraper service method
-      const scrapedData = await scraperService.scrollAndScrape(req.body.url);
+      const scrapedData = await scraperService.scrapeAndStore(req.body.url);
       res.status(200).json(scrapedData);
     } catch (error) {
       console.error("Error scraping data:", error);
