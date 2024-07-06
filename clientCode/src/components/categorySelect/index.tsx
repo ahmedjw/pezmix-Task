@@ -1,20 +1,15 @@
-import React from "react";
 import { Select } from "antd";
+import { CateorySelectI } from "./interface";
+import { CategoryT } from "../../interfaces";
 
-interface CateorySelectI {
-  setCategory: any;
-}
 const CateorySelect: React.FC<CateorySelectI> = ({ setCategory }) => {
-  const handleOnChange = (e: any) => {
+  const handleOnChange = (e: CategoryT) => {
     setCategory(e);
   };
   return (
     <Select
       showSearch
       placeholder="Select a Category"
-      filterOption={(input, option) =>
-        (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
-      }
       options={[
         { value: "Podcasts", label: "Podcasts" },
         { value: "Sororities", label: "Sororities" },

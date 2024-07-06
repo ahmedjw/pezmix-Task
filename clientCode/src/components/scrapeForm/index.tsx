@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import type { FormProps } from "antd";
+import React, { useState } from "react";
 import { Button, Form, Input } from "antd";
 import CateorySelect from "../categorySelect";
 import { FieldType, ScrapeFormI, resource } from "./interface";
 import ScrapeResoursesComponent from "../ScrapeResoursesComponent";
 import { ScrapeEmails } from "../../api/quieries";
 import { toast } from "react-toastify";
+import { AxiosResponse } from "axios";
+import { EmailScrapPostData } from "../../api/interface";
 
 const ScrapeForm: React.FC<ScrapeFormI> = ({
   scrapeResources,
@@ -17,21 +18,22 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
     const url = new URL(scrapingWebsite.link);
     const searchParams = url.searchParams;
     searchParams.set(scrapingWebsite.parameterName, parametr);
-    // console.log(scrapingWebsite, scrapingWebsite.parameterName);
-    const response = await ScrapeEmails(url).then((res: any) => {
-      if (res?.status == 200) {
-        toast.info("Emials scrapeing process is complete ", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
+    await ScrapeEmails(url).then(
+      (res: AxiosResponse<EmailScrapPostData> | undefined) => {
+        if (res?.status === 200) {
+          toast.info("Emials scrapeing process is complete ", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
       }
-    });
+    );
   };
 
   return (
@@ -39,7 +41,7 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
-      style={{ maxWidth: 600, border: "solid 1 black" }}
+      style={{ maxWidth: 600 }}
     >
       <Form.Item<FieldType> label="category" name="category">
         <CateorySelect setCategory={setCategory} />
@@ -62,7 +64,7 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
         <Button
           type="primary"
           htmlType="submit"
-          disabled={scrapeResources?.length == 0}
+          disabled={scrapeResources?.length === 0}
           onClick={handleSubmit}
         >
           Submit

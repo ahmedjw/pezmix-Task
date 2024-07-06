@@ -5,7 +5,7 @@ import { LogoStyle, NavStyle } from "./Style";
 export default function NavBar() {
   return (
     <Menu mode="horizontal" style={NavStyle}>
-      <Menu.Item key="" style={LogoStyle}>
+      <Menu.Item key="Logo" style={LogoStyle}>
         <Link href="/"> Pezmix </Link>
       </Menu.Item>
       <Menu.Item key="Features">

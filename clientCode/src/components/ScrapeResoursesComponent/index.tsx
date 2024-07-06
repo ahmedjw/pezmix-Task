@@ -1,6 +1,5 @@
 import React from "react";
 import { ScrapWebsiteImageStyle } from "./style";
-import { ScrapeResoursesComponentI } from "./interface";
 
 const ScrapeResoursesComponent: React.FC<any> = ({
   name,
@@ -19,7 +18,12 @@ const ScrapeResoursesComponent: React.FC<any> = ({
     });
   };
   return (
-    <li style={ScrapWebsiteImageStyle} value={link} onClick={handleClick}>
+    <li
+      key={name}
+      style={ScrapWebsiteImageStyle}
+      value={link}
+      onClick={handleClick}
+    >
       <img src={image} alt={name} width={200} />
     </li>
   );

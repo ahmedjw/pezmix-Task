@@ -1,4 +1,6 @@
-export const storedScrapeResources = {
+// we can handle this here and in the backend
+
+export const storedScrapeResources: any = {
   Podcasts: [],
   Sororities: [
     {

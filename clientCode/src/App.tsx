@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import ScrapeForm from "./components/scrapeForm";
@@ -10,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App: React.FC = () => {
   const [category, setCategory] = useState<CategoryT>("");
-  const [scrapeResources, setScrapeResourses] = useState("");
+  const [scrapeResources, setScrapeResourses] = useState([]);
   useEffect(() => {
     setScrapeResourses(storedScrapeResources[category]);
   }, [category]);

@@ -1,13 +1,15 @@
+import { Dispatch, SetStateAction } from "react";
+import { ScrapeResoursesComponentI } from "../ScrapeResoursesComponent/interface";
 import { CategoryT } from "../../interfaces";
 
 export type FieldType = {
   category?: string;
   parameter?: string;
-  name: any;
+  name?: string;
 };
 export interface ScrapeFormI {
-  setCategory: any;
-  scrapeResources: any;
+  setCategory: Dispatch<SetStateAction<CategoryT>>;
+  scrapeResources: Array<ScrapeResoursesComponentI>;
 }
 export interface resource {
   name: string;
