@@ -6,6 +6,7 @@ export const NavStyle: React.CSSProperties = {
 export const LogoStyle: React.CSSProperties = {
   display: "flex",
   flexGrow: "0.9 ",
+  BorderBottom: "0"
 };
 export const contentStyle: React.CSSProperties = {
     padding: "2rem",
