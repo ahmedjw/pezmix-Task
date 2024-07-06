@@ -1,37 +1,17 @@
 import nodemailer from "nodemailer";
 require("dotenv").config();
+import { EmailExample } from "../helpers/Emailsetup";
 
 const emailService = {
   emailBody: {
-    subject: "🌟 Exclusive Summer Sale Inside!",
-    body: `Dear Customer,
-    
-                Dive into our hottest summer savings! Get up to 50% off on handpicked items. Act fast before they're gone. Tap below to start shopping!
-    
-                Start Shopping
-    
-                Warm regards,
-                The Team at Your Store`,
-
-    html: ` <h3>Dear Customer</h3>
-            <p>
-                Dive into our hottest summer savings!
-                <br/>
-                Get up to 50% off on handpicked items. 
-                <br/>
-                Act fast before they're gone. Tap below to start shopping!
-                <br/>
-            </p> 
-            <p>   
-            Warm regards,
-            <br/>
-            Pezmix Team
-            </p>
-      `,
+    subject: "Transform Your Digital Creations into Income with Pezmix",
+    body: EmailExample.body,
+    html: EmailExample.html,
   },
 
   async sendEmail(to: string, subject: string, text: string): Promise<void> {
     try {
+      //I made here a test Email with a static Email with the option to make it dynmic if we use a dashboard to create & send email
       const transporter = nodemailer.createTransport({
         //test using outlook service need to change to comapny's host
         host: "smtp.office365.com",
@@ -66,4 +46,5 @@ const emailService = {
   },
 };
 
+// emailService.sendEmail("", "", "");
 export default emailService;
