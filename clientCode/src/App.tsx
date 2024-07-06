@@ -1,40 +1,31 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+// @ts-nocheck
+import React, { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import ScrapeForm from "./components/scrapeForm";
+import { CategoryT } from "./interfaces";
+import { storedScrapeResources } from "./utils/consts";
+import NavBar from "./components/navBar";
+import { contentStyle } from "./components/navBar/Style";
+import "react-toastify/dist/ReactToastify.css";
 
 const App: React.FC = () => {
-  const [url, setUrl] = useState('');
-  const [emails, setEmails] = useState<string[]>([]);
-  const [error, setError] = useState<any>(null);
-
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-    setError(null);
-    setEmails([]);
-
-    try {
-      const response = await axios.post('http://localhost:5000/api/scrape/scrape', { url });
-      setEmails(response.data.emails);
-    } catch (err) {
-      // setError(err.response ? err.response.data.error : 'An error occurred');
-    }
-  };
+  const [category, setCategory] = useState<CategoryT>("");
+  const [scrapeResources, setScrapeResourses] = useState("");
+  useEffect(() => {
+    setScrapeResourses(storedScrapeResources[category]);
+  }, [category]);
 
   return (
-    <div>
-      <h1>Email Scraper</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          placeholder="Enter URL"
-          required
+    <>
+      <NavBar />
+      <div style={contentStyle}>
+        <ScrapeForm
+          setCategory={setCategory}
+          scrapeResources={scrapeResources}
         />
-        <button type="submit">Scrape Emails</button>
-      </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-
-    </div>
+      </div>
+      <ToastContainer />
+    </>
   );
 };
 
