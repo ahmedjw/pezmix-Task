@@ -43,7 +43,7 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
     >
-      <Form.Item<FieldType> label="category" name="category">
+      <Form.Item<FieldType> label="category">
         <CateorySelect setCategory={setCategory} />
       </Form.Item>
       {scrapeResources?.length > 0 && (
@@ -64,7 +64,7 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
         <Button
           type="primary"
           htmlType="submit"
-          disabled={scrapeResources?.length === 0}
+          disabled={scrapingWebsite === "" || parametr.length < 3}
           onClick={handleSubmit}
         >
           Submit
