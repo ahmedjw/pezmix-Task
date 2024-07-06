@@ -3,10 +3,6 @@ import scraperController from "../controllers/scraperController";
 
 export const router = express.Router();
 
-// Define routes for scraping
-// router.get("/scrape", (req: Request, res: Response) => {
-//   scraperController.scrapeData(req, res);
-// });
 router.post("/Emails", (req: Request, res: Response) => {
   scraperController.scrapeData(req, res);
 });

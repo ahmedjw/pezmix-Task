@@ -1,14 +1,7 @@
 import nodemailer from "nodemailer";
 require("dotenv").config();
-import { EmailExample } from "../helpers/Emailsetup";
 
 const emailService = {
-  emailBody: {
-    subject: "Transform Your Digital Creations into Income with Pezmix",
-    body: EmailExample.body,
-    html: EmailExample.html,
-  },
-
   async sendEmail(to: string, subject: string, text: string): Promise<void> {
     try {
       //I made here a test Email with a static Email with the option to make it dynmic if we use a dashboard to create & send email
@@ -34,10 +27,10 @@ const emailService = {
 
       await transporter.sendMail({
         from: "ahm_ed_2012@hotmail.com",
-        to: "ahmedjwifel@gmail.com",
-        subject: this.emailBody.subject,
-        text: this.emailBody.body,
-        html: this.emailBody.html,
+        to: to,
+        subject: subject,
+        text: text,
+        // html: this.emailBody.html,
       });
     } catch (error) {
       console.error("Error sending email:", error);
@@ -47,3 +40,10 @@ const emailService = {
 };
 
 export default emailService;
+
+// A test Email template to use
+// emailBody: {
+//   subject: "Transform Your Digital Creations into Income with Pezmix",
+//   body: EmailTemplate.body,
+//   html: EmailTemplate.html,
+// },

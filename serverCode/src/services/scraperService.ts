@@ -1,24 +1,23 @@
 import cheerio from "cheerio";
+import puppeteer from "puppeteer";
 import { autoScroll, delay } from "../helpers/scraperHelpers";
 import { websitesScraperConfigrations } from "../helpers/scraperHelpers";
-import puppeteer from "puppeteer";
 import { storeEmails } from "../helpers/dbActions";
-import { Email } from "../models/Email";
 import { connectToDb } from "../db";
 
 const scraperService = {
   async scrapeAndStore(url: string) {
     const emailsSet = new Set();
-    const browser = await puppeteer.launch({
-      headless: false, // used to visualize the process in chrome
-    });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     try {
       await page.goto(url, { waitUntil: "networkidle2", timeout: 300000 });
       await delay(3000);
       if (url.includes("mcommunity"))
         websitesScraperConfigrations("mcommunity", page);
-      else await autoScroll(page);
+      else {
+        await autoScroll(page);
+      }
 
       await delay(2000);
       const htmlContent = await page.content();
@@ -31,10 +30,7 @@ const scraperService = {
       const textContent = $.html();
       // Find all email addresses in the text content
       const emails = textContent.match(emailRegex);
-
-      emails?.forEach((item: string) => {
-        emailsSet.add(item);
-      });
+      emails?.map((item: string) => emailsSet.add(item));
       await connectToDb();
       const emailsScraped = await storeEmails(emailsSet);
       return { emailsScraped };
@@ -47,9 +43,3 @@ const scraperService = {
 };
 
 export default scraperService;
-
-scraperService.scrapeAndStore(
-  "https://mcommunity.umich.edu/?value=eng&base=all"
-);
-
-// storeEmails("ahmedabum@gmail.com");

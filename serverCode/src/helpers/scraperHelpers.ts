@@ -1,7 +1,10 @@
+import { Page } from "puppeteer";
 
 // function to handle scraping process with diffrent configrations depend on the website we need to scrap
-
-export async function websitesScraperConfigrations(website: string, page: any) {
+export async function websitesScraperConfigrations(
+  website: string,
+  page: Page
+) {
   switch (website) {
     //scraper configration for mcommunity website
     case "mcommunity": {
@@ -22,7 +25,7 @@ export async function websitesScraperConfigrations(website: string, page: any) {
   }
 }
 
-// a funtion to auto scroll while scraping a lazyLoading page 
+// a funtion with auto scroll while scraping a lazyLoading page and all pages without pageintion
 export async function autoScroll(page: any) {
   const getDocumentHeight = async () => {
     return await page.evaluate(() => document.body.scrollHeight);
@@ -34,12 +37,9 @@ export async function autoScroll(page: any) {
   while (true) {
     // Scroll to the bottom of the page
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-
     // Wait for new content to load
     await delay(3000);
-
     currentHeight = await getDocumentHeight();
-
     // If the height of the document hasn't changed, break the loop
     if (currentHeight === previousHeight) {
       break;
@@ -48,7 +48,7 @@ export async function autoScroll(page: any) {
   }
 }
 
-// delay function for scraping 
+// delay function for scraping
 export async function delay(time: any) {
   return new Promise(function (resolve) {
     setTimeout(resolve, time);

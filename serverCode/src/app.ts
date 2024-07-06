@@ -3,7 +3,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import scraperRoutes from "./routes/scraperRoutes";
 import emailRoutes from "./routes/emailRoutes";
-import { connectToDb } from "./db";
 
 const app = express();
 const port = process.env.PORT || 5000;

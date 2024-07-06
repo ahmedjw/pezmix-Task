@@ -1,4 +1,5 @@
-export const EmailExample = {
+//email template to use as a test case
+export const EmailTemplate = {
   body: `Dear Lyndon,
     I hope this email finds you well.
     
