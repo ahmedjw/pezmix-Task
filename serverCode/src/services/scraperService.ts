@@ -2,12 +2,15 @@ import cheerio from "cheerio";
 import { autoScroll, delay } from "../helpers/scraperHelpers";
 import { websitesScraperConfigrations } from "../helpers/scraperHelpers";
 import puppeteer from "puppeteer";
+import { storeEmails } from "../helpers/dbActions";
+import { Email } from "../models/Email";
+import { connectToDb } from "../db";
 
 const scraperService = {
-  async scrollAndScrape(url: string) {
+  async scrapeAndStore(url: string) {
     const emailsSet = new Set();
     const browser = await puppeteer.launch({
-      // headless: false, // used to visualize the process in chrome
+      headless: false, // used to visualize the process in chrome
     });
     const page = await browser.newPage();
     try {
@@ -29,11 +32,12 @@ const scraperService = {
       // Find all email addresses in the text content
       const emails = textContent.match(emailRegex);
 
-      emails?.forEach((item:string) => {
+      emails?.forEach((item: string) => {
         emailsSet.add(item);
       });
-
-      return { emailsSet };
+      await connectToDb();
+      const emailsScraped = await storeEmails(emailsSet);
+      return { emailsScraped };
     } catch (error) {
       console.error("Error:", error);
     } finally {
@@ -44,8 +48,11 @@ const scraperService = {
 
 export default scraperService;
 
-
-// scraperService.scrollAndScrape("https://stanfordwho.stanford.edu/people?sort=20&keyword=eng");
-// scraperService.scrollAndScrape(
+scraperService.scrapeAndStore(
+  "https://stanfordwho.stanford.edu/people?sort=20&keyword=eng"
+);
+// scraperService.scrapeAndStore(
 //   "https://mcommunity.umich.edu/?value=eng&base=all"
 // );
+
+// storeEmails("ahmedabum@gmail.com");

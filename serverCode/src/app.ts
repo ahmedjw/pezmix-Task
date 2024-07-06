@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import scraperRoutes from "./routes/scraperRoutes";
 import emailRoutes from "./routes/emailRoutes";
+import { connectToDb } from "./db";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -23,6 +24,7 @@ app.use((err: Error, req: Request, res: Response) => {
 });
 
 // running server
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
