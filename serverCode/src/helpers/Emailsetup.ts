@@ -1,6 +1,5 @@
-export const EmailExample = (): any => {
-  const body = `Dear Lyndon,
-
+export const EmailExample = {
+  body: `Dear Lyndon,
     I hope this email finds you well.
     
     My name is Ahmed , and I am excited to introduce you to Pezmix, a groundbreaking startup dedicated to empowering creators and entrepreneurs through our innovative digital asset marketplace.
@@ -26,8 +25,8 @@ export const EmailExample = (): any => {
     
     Ahmed jwifel
     Software Engineer
-    Pezmix`;
-  const html = `
+    Pezmix`,
+  html: `
     <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,9 +74,9 @@ export const EmailExample = (): any => {
 <body>
     <div class="container">
         <h1>Transform Your Digital Creations into Income with Pezmix</h1>
-        <p>Dear [Customer's Name],</p>
+        <p>Dear Lyndon,</p>
         <p>I hope this email finds you well.</p>
-        <p>My name is [Your Name], and I am excited to introduce you to Pezmix, a groundbreaking startup dedicated to empowering creators and entrepreneurs through our innovative digital asset marketplace.</p>
+        <p>My name is Ahmed, and I am excited to introduce you to Pezmix, a groundbreaking startup dedicated to empowering creators and entrepreneurs through our innovative digital asset marketplace.</p>
         <p>At Pezmix, we believe in the potential of digital creations and aim to provide a seamless and accessible platform for monetizing these works. Our platform allows users to easily upload and list a wide variety of digital media and files for sale, including:</p>
         <ul>
             <li>Art and Design Assets</li>
@@ -91,13 +90,12 @@ export const EmailExample = (): any => {
         <p>Thank you for considering Pezmix as your partner in digital asset monetization. I look forward to the possibility of working together.</p>
         <p>Have a great day!</p>
         <p>Best regards,</p>
-        <p>[Your Full Name]<br>[Your Position]<br>Pezmix<br>[Your Email Address]<br>[Your Phone Number]<br><a href="[Your Website URL]">Visit our website</a></p>
+        <p>Ahmed jwifel<br>Software Engineer<br>Pezmix<br>
         <div class="footer">
             <p>If you do not wish to receive further emails from us, please reply to this email with "Unsubscribe".</p>
         </div>
     </div>
 </body>
 </html>
-`;
-  return { body, html };
+`,
 };

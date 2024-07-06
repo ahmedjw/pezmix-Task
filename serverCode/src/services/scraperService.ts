@@ -49,10 +49,7 @@ const scraperService = {
 export default scraperService;
 
 scraperService.scrapeAndStore(
-  "https://stanfordwho.stanford.edu/people?sort=20&keyword=eng"
+  "https://mcommunity.umich.edu/?value=eng&base=all"
 );
-// scraperService.scrapeAndStore(
-//   "https://mcommunity.umich.edu/?value=eng&base=all"
-// );
 
 // storeEmails("ahmedabum@gmail.com");

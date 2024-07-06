@@ -46,5 +46,4 @@ const emailService = {
   },
 };
 
-// emailService.sendEmail("", "", "");
 export default emailService;
