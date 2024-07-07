@@ -4,3 +4,8 @@ export interface EmailScrapPostData {
   };
   status: number;
 }
+export interface EmailRequirmentsI {
+  to: string;
+  object: string;
+  body: string;
+}

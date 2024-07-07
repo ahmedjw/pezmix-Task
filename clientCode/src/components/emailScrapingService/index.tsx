@@ -1,37 +1,33 @@
 import React, { useState } from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Typography } from "antd";
 import CateorySelect from "../categorySelect";
 import { FieldType, ScrapeFormI, resource } from "./interface";
 import ScrapeResoursesComponent from "../ScrapeResoursesComponent";
 import { ScrapeEmails } from "../../api/quieries";
-import { toast } from "react-toastify";
 import { AxiosResponse } from "axios";
 import { EmailScrapPostData } from "../../api/interface";
+import {
+  ErrorNotifictionHandler,
+  SuccsessNotifictionHandler,
+} from "../../utils/NotifictionHandlers";
 
-const ScrapeForm: React.FC<ScrapeFormI> = ({
+const EmailScrapingService: React.FC<ScrapeFormI> = ({
   scrapeResources,
   setCategory,
 }) => {
   const [scrapingWebsite, setScrapingWebsite] = useState<any>("");
   const [parametr, setParametr] = useState<string>("");
-  const handleSubmit = async () => {
+  const { Title } = Typography;
+
+  const handleScrapeProcess = async () => {
     const url = new URL(scrapingWebsite.link);
     const searchParams = url.searchParams;
     searchParams.set(scrapingWebsite.parameterName, parametr);
     await ScrapeEmails(url).then(
       (res: AxiosResponse<EmailScrapPostData> | undefined) => {
-        if (res?.status === 200) {
-          toast.info("Emials scrapeing process is complete ", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
-        }
+        if (res?.status === 200)
+          SuccsessNotifictionHandler("Emials scrapeing process is complete ");
+        else ErrorNotifictionHandler("There is an Error process failed ");
       }
     );
   };
@@ -43,6 +39,9 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
       wrapperCol={{ span: 16 }}
       style={{ maxWidth: 600 }}
     >
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Title level={3}>Email Scrape Service</Title>
+      </Form.Item>
       <Form.Item<FieldType> label="category">
         <CateorySelect setCategory={setCategory} />
       </Form.Item>
@@ -65,7 +64,7 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
           type="primary"
           htmlType="submit"
           disabled={scrapingWebsite === "" || parametr.length < 3}
-          onClick={handleSubmit}
+          onClick={handleScrapeProcess}
         >
           Submit
         </Button>
@@ -74,4 +73,4 @@ const ScrapeForm: React.FC<ScrapeFormI> = ({
   );
 };
 
-export default ScrapeForm;
+export default EmailScrapingService;
