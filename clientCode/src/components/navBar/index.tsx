@@ -1,12 +1,13 @@
 import { Button, Menu } from "antd";
 import Link from "antd/es/typography/Link";
 import { LogoStyle, NavStyle } from "./Style";
+import './style.css' 
 
 export default function NavBar() {
   return (
     <Menu mode="horizontal" style={NavStyle}>
-      <Menu.Item key="Logo" style={LogoStyle}>
-        <Link href="/"> Pezmix </Link>
+      <Menu.Item className="hover-effect" key="Logo" style={LogoStyle}>
+        <Link  href="/"> Pezmix </Link>
       </Menu.Item>
       <Menu.Item key="Features">
         <Link href="/Features"> Features </Link>

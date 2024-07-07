@@ -1,0 +1,7 @@
+.hover-effect {
+  }
+  
+  .hover-effect::after {
+    border-bottom: 0 !important;
+  }
+  
