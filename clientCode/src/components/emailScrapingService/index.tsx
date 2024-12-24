@@ -25,6 +25,7 @@ const EmailScrapingService: React.FC<ScrapeFormI> = ({
     searchParams.set(scrapingWebsite.parameterName, parametr);
     await ScrapeEmails(url).then(
       (res: AxiosResponse<EmailScrapPostData> | undefined) => {
+        console.log(res);
         if (res?.status === 200)
           SuccsessNotifictionHandler("Emials scrapeing process is complete ");
         else ErrorNotifictionHandler("There is an Error process failed ");
@@ -58,7 +59,6 @@ const EmailScrapingService: React.FC<ScrapeFormI> = ({
       <Form.Item<FieldType> label="parameter" name="parameter">
         <Input onChange={(e) => setParametr(e.target.value)} />
       </Form.Item>
-
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
         <Button
           type="primary"
