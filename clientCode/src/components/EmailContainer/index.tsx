@@ -2,10 +2,16 @@ import React from "react";
 import { EmailsContainerProps } from "./interfaces";
 import { Card, Typography } from "antd";
 
-const EmainContainer: React.FC<EmailsContainerProps> = () => {
+const EmainContainer: React.FC<EmailsContainerProps> = ({ emails }) => {
   return (
     <Card>
-      <Typography>Emails Scraped </Typography>
+      <h3>Emails </h3>
+      {emails.map((email) => (
+        <Card>
+            
+          <Typography>{email}</Typography>
+        </Card>
+      ))}
     </Card>
   );
 };
