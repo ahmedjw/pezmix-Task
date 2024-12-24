@@ -10,7 +10,7 @@ export async function websitesScraperConfigrations(
     case "mcommunity": {
       const selectElement = await page.$('label[name="page-size"] select');
       if (selectElement) await selectElement.click();
-      await delay(1000);
+      await delay(2000);
       await page.select('label[name="page-size"] select', "500");
       await page.keyboard.press("ArrowDown");
       await page.keyboard.press("ArrowDown");

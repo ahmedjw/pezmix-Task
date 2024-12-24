@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Services from "./components/servicesComponent";
 import Layout from "./components/Layout";
 import { Typography } from "antd";
+import EmainContainer from "./components/EmailContainer";
 
 const App: React.FC = () => {
   const [category, setCategory] = useState<CategoryT>("");
@@ -33,6 +34,10 @@ const App: React.FC = () => {
                     scrapeResources={scrapeResources}
                   />
                 }
+              />
+              <Route
+                path="emails"
+                element={<EmainContainer emails={["Ahmedjwifel@gmail.com"]} />}
               />
               <Route path="emailsend/" element={<EmailSendService />} />
             </Route>

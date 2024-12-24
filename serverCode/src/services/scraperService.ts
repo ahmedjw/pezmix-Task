@@ -18,7 +18,6 @@ const scraperService = {
       else {
         await autoScroll(page);
       }
-
       await delay(2000);
       const htmlContent = await page.content();
       await delay(2000);
