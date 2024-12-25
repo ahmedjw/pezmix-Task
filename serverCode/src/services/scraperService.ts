@@ -21,13 +21,9 @@ const scraperService = {
       await delay(2000);
       const htmlContent = await page.content();
       await delay(2000);
-      // Load HTML content into Cheerio
       const $ = cheerio.load(htmlContent);
-      //email regex to find emails
       const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
-      // Get all text content from the page
       const textContent = $.html();
-      // Find all email addresses in the text content
       const emails = textContent.match(emailRegex);
       emails?.map((item: string) => emailsSet.add(item));
       await connectToDb();
