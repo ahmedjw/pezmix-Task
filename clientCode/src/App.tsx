@@ -37,7 +37,25 @@ const App: React.FC = () => {
               />
               <Route
                 path="emails"
-                element={<EmainContainer emails={["Ahmedjwifel@gmail.com"]} />}
+                element={
+                  <EmainContainer
+                    emails={[
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                      "Ahmedjwifel@gmail.com",
+                    ]}
+                  />
+                }
               />
               <Route path="emailsend/" element={<EmailSendService />} />
             </Route>
