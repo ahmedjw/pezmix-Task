@@ -11,7 +11,7 @@ export const Layout: React.FC = () => {
       <div style={contentStyle}>
         <Outlet />
       </div>
-      <Footer />
+      {/* <Footer /> */}
       {/* // instead of building a footer component */}
     </>
   );

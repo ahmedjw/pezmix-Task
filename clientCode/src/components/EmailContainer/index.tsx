@@ -1,8 +1,8 @@
 import React from "react";
 import { EmailsContainerProps } from "./interfaces";
-import { Card, Col, Row, Typography } from "antd";
+import { Button, Card, Col, Row, Typography } from "antd";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const EmainContainer: React.FC<EmailsContainerProps> = ({ emails }) => {
   return (
     <>
@@ -10,8 +10,16 @@ const EmainContainer: React.FC<EmailsContainerProps> = ({ emails }) => {
       <Row gutter={[32, 24]}>
         {emails.map((email) => (
           <Col span={6}>
-            <Card>
-              <Typography>{email}</Typography>
+            <Card style={{ gap: "30px" }}>
+              <Typography>
+                <Text type="warning">Name: </Text>
+                {email}
+              </Typography>
+              <Typography>
+                <Text type="warning">Email: </Text>
+                {email}
+              </Typography>
+              <Button>Send Email</Button>
             </Card>
           </Col>
         ))}
