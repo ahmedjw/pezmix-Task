@@ -4,18 +4,15 @@ require("dotenv").config();
 const emailService = {
   async sendEmail(to: string, subject: string, text: string): Promise<void> {
     try {
-      //I made here a test Email with a static Email with the option to make it dynmic if we use a dashboard to create & send email
       const transporter = nodemailer.createTransport({
-        //test using outlook service need to change to comapny's host
         host: "smtp.office365.com",
         port: 587,
         secure: false,
         auth: {
-          user: process.env.COMPANY_EMAIL, // need to check .env data
+          user: process.env.COMPANY_EMAIL,
           pass: process.env.COMPANY_COMPANY_EMAIL_PASSWORD,
         },
         headers: {
-          //used to improve reaching mail to main box
           "X-Sender-IP": "http://172.19.176.1:3000",
           "X-Mailer": "Nodemailer",
           "X-Originating-IP": "http://172.19.176.1:3000",
@@ -30,7 +27,6 @@ const emailService = {
         to: to,
         subject: subject,
         text: text,
-        // html: this.emailBody.html,
       });
     } catch (error) {
       console.error("Error sending email:", error);
@@ -40,10 +36,3 @@ const emailService = {
 };
 
 export default emailService;
-
-// A test Email template to use
-// emailBody: {
-//   subject: "Transform Your Digital Creations into Income with Pezmix",
-//   body: EmailTemplate.body,
-//   html: EmailTemplate.html,
-// },
