@@ -9,19 +9,7 @@ const EmainContainer: React.FC<EmailsContainerProps> = ({ emails }) => {
       <Title level={2}>Emails:</Title>
       <Row gutter={[32, 24]}>
         {emails.map((email) => (
-          <Col span={6}>
-            <Card style={{ gap: "30px" }}>
-              <Typography>
-                <Text type="warning">Name: </Text>
-                {email}
-              </Typography>
-              <Typography>
-                <Text type="warning">Email: </Text>
-                {email}
-              </Typography>
-              <Button>Send Email</Button>
-            </Card>
-          </Col>
+         
         ))}
       </Row>
     </>
