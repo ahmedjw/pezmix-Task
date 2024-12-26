@@ -1,7 +1,7 @@
 import { Button, Card, Col, Typography } from "antd";
 import React from "react";
 
-export const EmailCard: React.FC = ({ email }) => {
+export const EmailCard: React.FC = ({ email }: any) => {
   const { Text } = Typography;
 
   return (
